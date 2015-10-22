@@ -11,18 +11,8 @@ namespace WeChatService.Test
     {
 
         public IDbSet<Account> Accounts { get; set; }
-        public IDbSet<Article> Articles { get; set; }
-        public IDbSet<ArticleType> ArticleTypes { get; set; }
         public IDbSet<Company> Companies { get; set; }
-        public IDbSet<PetrochemicalPrice> PetrochemicalPrices { get; set; }
-        public IDbSet<Price> Prices { get; set; }
-        public IDbSet<PriceType> PriceTypes { get; set; }
-        public IDbSet<Product> Products { get; set; }
-        public IDbSet<ProductStandard> ProductStandards { get; set; }
         public IDbSet<Province> Provinces { get; set; }
-        public IDbSet<QuotedPrice> QuotedPrices { get; set; }
-        public IDbSet<Site> Sites { get; set; }
-    
         IDbSet<TEntity> IDataContext.Set<TEntity>()
         {
             return this.Set<TEntity>();

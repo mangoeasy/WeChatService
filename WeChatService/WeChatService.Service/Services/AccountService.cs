@@ -27,11 +27,6 @@ namespace WeChatService.Service.Services
             return this.DbContext.Accounts.FirstOrDefault(u => u.Id == id);
         }
 
-        public Account GetAccount(string email)
-        {           
-            return this.DbContext.Accounts.FirstOrDefault(u => u.Email == email);
-        }
-
         public IQueryable<Account> GetAccounts()
         {
             return this.DbContext.Accounts;

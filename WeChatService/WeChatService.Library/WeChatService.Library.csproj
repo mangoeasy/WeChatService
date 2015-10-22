@@ -54,36 +54,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Account.cs" />
-    <Compile Include="Models\Article.cs" />
-    <Compile Include="Models\ArticleType.cs" />
     <Compile Include="Models\Company.cs" />
-    <Compile Include="Models\Enum\Currency.cs" />
-    <Compile Include="Models\Enum\Gender.cs" />
-    <Compile Include="Models\Enum\QuotedType.cs" />
     <Compile Include="Models\Interfaces\IDtStamped.cs" />
-    <Compile Include="Models\PetrochemicalPrice.cs" />
-    <Compile Include="Models\Price.cs" />
-    <Compile Include="Models\PriceType.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\ProductStandard.cs" />
     <Compile Include="Models\Province.cs" />
-    <Compile Include="Models\QuotedPrice.cs" />
-    <Compile Include="Models\Site.cs" />
-    <Compile Include="Models\QQInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IAccountService.cs" />
-    <Compile Include="Services\IArticleService.cs" />
-    <Compile Include="Services\IArticleTypeService.cs" />
     <Compile Include="Services\ICompanyService.cs" />
     <Compile Include="Services\IDataContext.cs" />
-    <Compile Include="Services\IPetrochemicalPriceService.cs" />
-    <Compile Include="Services\IPriceService.cs" />
-    <Compile Include="Services\IPriceTypeService.cs" />
-    <Compile Include="Services\IProductService.cs" />
-    <Compile Include="Services\IProductStandardService.cs" />
     <Compile Include="Services\IProvinceService.cs" />
-    <Compile Include="Services\IQuotedPriceService.cs" />
-    <Compile Include="Services\ISiteService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

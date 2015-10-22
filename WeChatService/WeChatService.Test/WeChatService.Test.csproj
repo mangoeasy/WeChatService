@@ -64,15 +64,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CodeFirstDbContext.cs" />
-    <Compile Include="Migrations\201508210653403_Initial.cs" />
-    <Compile Include="Migrations\201508210653403_Initial.Designer.cs">
-      <DependentUpon>201508210653403_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508260228303_Initial1.cs" />
-    <Compile Include="Migrations\201508260228303_Initial1.Designer.cs">
-      <DependentUpon>201508260228303_Initial1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -85,14 +76,6 @@
       <Project>{EAD2DBEC-F621-4176-802A-09D7FA970844}</Project>
       <Name>WeChatService.Library</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201508210653403_Initial.resx">
-      <DependentUpon>201508210653403_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508260228303_Initial1.resx">
-      <DependentUpon>201508260228303_Initial1.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
