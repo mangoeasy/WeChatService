@@ -24,17 +24,10 @@ namespace WeChatService.Web
         }
         public static void RegisterTypes(IUnityContainer container)
         {
-            container.RegisterType<IPriceService, PriceService>();
-            container.RegisterType<IPriceTypeService, PriceTypeService>();
-            container.RegisterType<IProductService, ProductService>();
-            container.RegisterType<IProductStandardService, ProductStandardService>();
-            container.RegisterType<IArticleTypeService, ArticleTypeService>();
-            container.RegisterType<IArticleService, ArticleService>();
+           
             container.RegisterType<IAccountService, AccountService>();
             container.RegisterType<ICompanyService, CompanyService>();
             container.RegisterType<IProvinceService, ProvinceService>();
-            container.RegisterType<IQuotedPriceService, QuotedPriceService>();
-            container.RegisterType<IPetrochemicalPriceService, PetrochemicalPriceService>();
         }
     }
 }

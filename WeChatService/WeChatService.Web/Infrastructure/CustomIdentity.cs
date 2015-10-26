@@ -1,6 +1,4 @@
-﻿using System;
-using System.Security.Principal;
-using WeChatService.Library.Models;
+﻿using System.Security.Principal;
 using WeChatService.Library.Models;
 
 namespace WeChatService.Web.Infrastructure

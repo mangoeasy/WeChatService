@@ -8,8 +8,10 @@ using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 using WeChatService.Library.Services;
 using WeChatService.Web.Models;
+using WeChatService.Web.Models.APIModel;
 using ActionFilterAttribute = System.Web.Http.Filters.ActionFilterAttribute;
 
 namespace WeChatService.Web.Infrastructure.Filters
@@ -56,12 +58,30 @@ namespace WeChatService.Web.Infrastructure.Filters
                 {
                     var user = accountService.GetAccounts().FirstOrDefault(n => n.Id == objs.appid && n.IsDeleted == false);
                     if (user == null) return;
-                    var signature = SHA1_Hash(string.Format("appsecret={0}&random={1}", user.Token, objs.random));
-                    if (objs.signature.ToUpper() != signature) return;
-                    valid = true;
+                    var startTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+                    var timestamp = (int)(DateTime.Now - startTime).TotalSeconds;
+                    for (var i = 0; i < 600; i++)
+                    {
+                        var signature = SHA1_Hash(string.Format("appsecret={0}&random={1}&timestamp={2}", user.AccountToken, objs.random, timestamp - i));
+                        if (objs.signature.ToUpper() == signature)
+                        {
+                            valid = true;
+                            break;
+                        }
+                    }
+                    if (!valid) return;
                     var identity = new CustomIdentity(user);
                     var principal = new CustomPrincipal(identity);
                     HttpContext.Current.User = principal;
+                    //得到token 如果超时则重新获取  
+                    if (user.GetAccessTokenDateTime == null || DateTime.Now.Subtract(user.GetAccessTokenDateTime.Value).Duration().TotalSeconds > 7000)
+                    {
+                        var url = string.Format("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}", user.AppId, user.AppSecret);
+                        var accessToken = JsonConvert.DeserializeObject<AccessToken>(HttpGet(url)).access_token;
+                        user.GetAccessTokenDateTime = DateTime.Now;
+                        user.AccessToken = accessToken;
+                        accountService.Update();
+                    }
                 }
             }
             catch (Exception)
@@ -79,94 +99,19 @@ namespace WeChatService.Web.Infrastructure.Filters
             strSha1Out = strSha1Out.Replace("-", "").ToUpper();
             return strSha1Out;
         }
+        private static string HttpGet(string url)
+        {
+            try
+            {
+                var myWebClient = new WebClient { Credentials = CredentialCache.DefaultCredentials };
+                var pageData = myWebClient.DownloadData(url); //从指定网站下载数据  
+                var pageHtml = System.Text.Encoding.Default.GetString(pageData);  //如果获取网站页面采用的是GB2312，则使用这句
+                return pageHtml;
+            }
+            catch (WebException webEx)
+            {
+                return webEx.Message;
+            }
+        }
     }
-    //public class CallApiAuthorityAttribute : ActionFilterAttribute
-    //{
-    //    public override void OnActionExecuting(HttpActionContext filterContext)
-    //    {
-    //        string accessToken;
-    //        var valid = filterContext.Request.Headers.Authorization != null;
-    //        if (valid && GetCredentials(filterContext.Request.Headers.Authorization.ToString(), out accessToken, out valid))
-    //        {
-    //            try
-    //            {
-    //                //using (var weiXinPropertyService = DependencyResolver.Current.GetService<IWeiXinPropertyService>())
-    //                //{
-    //                //    var siteDomain = filterContext.Request.RequestUri.Host;
-    //                //    var weiXinProperty = weiXinPropertyService.GetWeiXinProperty(accessToken, siteDomain);
-    //                //    if (weiXinProperty == null)
-    //                //    {
-    //                //        valid = false;
-    //                //    }
-    //                //    //if (valid)
-    //                //    //{
-    //                //    //    CustomIdentity identity = new CustomIdentity(weiXinProperty.Account);
-    //                //    //    CustomPrincipal principal = new CustomPrincipal(identity);
-    //                //    //    HttpContext.Current.User = principal;
-    //                //    //}
-    //                //}
-    //            }
-    //            catch (Exception)
-    //            {
-    //                valid = false;
-
-    //            }
-    //        }
-
-    //        if (!valid)
-    //        {
-    //            var result = new JsonResult();
-    //            var response = new ResponseModel {Error = true, ErrorCode = 2000};
-
-    //            var errorResponse = filterContext.Request.CreateResponse(HttpStatusCode.Unauthorized, response);//InternalServerError
-    //            filterContext.Response = errorResponse;
-
-    //            return;
-    //        }
-
-    //        base.OnActionExecuting(filterContext);
-    //    }
-
-    //    private static bool GetCredentials(string credentials, out string token, out bool valid)
-    //    {
-    //        token = null;
-
-    //        if (!string.IsNullOrEmpty(credentials))
-    //        {
-    //            try
-    //            {
-    //                if (!string.IsNullOrEmpty(credentials))
-    //                {
-    //                    //需要加密
-    //                    //token = Encoding.ASCII.GetString(Convert.FromBase64String(credentials));
-    //                    token = credentials;
-    //                    valid = true;
-    //                    return true;
-    //                }
-    //                //var credentialParts = credentials.Split(new[] { ' ' });
-    //                //if (credentialParts.Length == 2 &&
-    //                //    credentialParts[0].Equals("basic",
-    //                //                              StringComparison.OrdinalIgnoreCase))
-    //                //{
-    //                //    credentials = Encoding.ASCII.GetString(
-    //                //        Convert.FromBase64String(credentialParts[1]));
-    //                //    credentialParts = credentials.Split(new[] { ':' }, 2);
-    //                //    if (credentialParts.Length == 2)
-    //                //    {
-    //                //        userName = credentialParts[0];
-    //                //        password = credentialParts[1];
-    //                //        valid = true;
-    //                //        return true;
-    //                //    }
-    //                //}
-    //            }
-    //            catch (Exception)
-    //            {
-    //                //this.GetLogger().Debug("Extraction of auth detail failed with exception.", ex);
-    //            }
-    //        }
-    //        valid = false;
-    //        return false;
-    //    }
-    //}
 }

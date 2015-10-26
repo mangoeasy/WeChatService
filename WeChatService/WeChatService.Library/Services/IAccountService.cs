@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using WeChatService.Library.Models;
-using WeChatService.Library.Models;
 
 namespace WeChatService.Library.Services
 {
@@ -12,6 +11,5 @@ namespace WeChatService.Library.Services
         void Delete(Guid id);
         Account GetAccount(Guid id);
         IQueryable<Account> GetAccounts();
-        Account GetAccount(string email);
     }
 }

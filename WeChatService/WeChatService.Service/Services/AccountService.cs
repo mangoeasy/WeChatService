@@ -38,6 +38,7 @@ namespace WeChatService.Service.Services
             DbContext.Accounts.Remove(account);
             Update();
         }
+       
     }
 }
 

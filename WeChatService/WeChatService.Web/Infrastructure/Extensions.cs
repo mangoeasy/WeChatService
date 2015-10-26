@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNet.Identity;
 using WeChatService.Library.Models;
-using WeChatService.Library.Services;
 using WeChatService.Service;
 using WeChatService.Service.Services;
 using WeChatService.Web.Models;
-using WeChatService.Library.Models;
 
 namespace WeChatService.Web.Infrastructure
 {
@@ -44,12 +38,13 @@ namespace WeChatService.Web.Infrastructure
                 }
 
                 Mapper.Reset();
-                Mapper.CreateMap<QQInfo, QQInfoModel>();
+                Mapper.CreateMap<Province, ProvinceModel>();
+                Mapper.CreateMap<City, CityModel>()
+                    .ForMember(n => n.ProvinceModel, opt => opt.MapFrom(src => src.Province));
                 Mapper.CreateMap<Company, CompanyModel>()
-                    .ForMember(n => n.CityId, opt => opt.MapFrom(src => src.City.Id));
+                    .ForMember(n => n.CityModel, opt => opt.MapFrom(src => src.City));
                 Mapper.CreateMap<Account, UserModel>()
-                    .ForMember(n => n.CompanyModel, opt => opt.MapFrom(src => src.Company))
-                    .ForMember(n => n.QQInfoModel, opt => opt.MapFrom(src => src.QQInfo));
+                    .ForMember(n => n.CompanyModel, opt => opt.MapFrom(src => src.Company));
                 return Mapper.Map<Account, UserModel>(user);
             }
             catch (Exception ex)

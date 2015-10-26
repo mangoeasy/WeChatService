@@ -17,9 +17,7 @@ namespace WeChatService.Web.Controllers.API
         public object Get()
         {
             Mapper.Reset();
-            Mapper.CreateMap<City, CityModel>();
-            Mapper.CreateMap<Province, ProvinceModel>()
-                .ForMember(n => n.CityModels, opt => opt.MapFrom(src => src.Cities));
+            Mapper.CreateMap<Province, ProvinceModel>();
             return _provinceService.GetProvinces().ToArray().Select(Mapper.Map<Province, ProvinceModel>);
         }
 	}

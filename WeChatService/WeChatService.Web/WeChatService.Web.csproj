@@ -198,8 +198,9 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\API\BaseApiController.cs" />
+    <Compile Include="Controllers\API\JsApiConfigController.cs" />
     <Compile Include="Controllers\API\ProvinceController.cs" />
-    <Compile Include="Controllers\API\UserRegisterController.cs" />
+    <Compile Include="Controllers\API\Sha1Controller.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Enums\IsPublish.cs" />
     <Compile Include="Enums\IsRecommend.cs" />
@@ -207,31 +208,22 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Help\MailHelper.cs" />
-    <Compile Include="Help\RongCloudHelp.cs" />
+    <Compile Include="Help\Tools.cs" />
     <Compile Include="Infrastructure\CustomIdentity.cs" />
     <Compile Include="Infrastructure\CustomPrincipal.cs" />
     <Compile Include="Infrastructure\Extensions.cs" />
     <Compile Include="Infrastructure\Filters\CallApiAuthorityAttribute.cs" />
     <Compile Include="Infrastructure\TokenModel.cs" />
-    <Compile Include="Infrastructure\UserService.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ArticleModel.cs" />
-    <Compile Include="Models\ArticleTypeModel.cs" />
+    <Compile Include="Models\APIModel\AccessToken.cs" />
+    <Compile Include="Models\APIModel\JsApiConfigModel.cs" />
+    <Compile Include="Models\APIModel\Ticket.cs" />
     <Compile Include="Models\CityModel.cs" />
     <Compile Include="Models\CompanyModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\PetrochemicalPriceModel.cs" />
-    <Compile Include="Models\PriceModel.cs" />
-    <Compile Include="Models\PriceTrendModel.cs" />
-    <Compile Include="Models\PriceTypeModel.cs" />
-    <Compile Include="Models\ProductModel.cs" />
-    <Compile Include="Models\ProductStandardModel.cs" />
-    <Compile Include="Models\QQInfoModel.cs" />
-    <Compile Include="Models\QuotedPriceModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Models\ResponseModel.cs" />
-    <Compile Include="Models\SingModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -250,6 +242,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Properties\PublishProfiles\WeChatService.local.pubxml" />
+    <None Include="Properties\PublishProfiles\WeChatService.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -295,8 +288,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\RegisterSucceed.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Article\Index.cshtml" />
     <Content Include="Views\Shared\MessageDialog.cshtml" />
     <Content Include="Views\Shared\_ArticleLayout.cshtml" />
   </ItemGroup>

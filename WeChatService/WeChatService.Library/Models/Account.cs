@@ -8,8 +8,18 @@ namespace WeChatService.Library.Models
     {
         [Key]
         public Guid Id { get; set; }
-        public Guid AppId { get; set; }
+        /// <summary>
+        /// 微信APPID
+        /// </summary>
+        public string AppId { get; set; }
+        /// <summary>
+        /// 微信AppSecret
+        /// </summary>
         public string AppSecret { get; set; }
+        /// <summary>
+        /// 本账户的Token用于验证
+        /// </summary>
+        public string AccountToken { get; set; }
         /// <summary>
         /// 微信返回的Token
         /// </summary>

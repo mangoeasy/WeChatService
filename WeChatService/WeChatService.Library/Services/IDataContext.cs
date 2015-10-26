@@ -2,7 +2,6 @@
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using WeChatService.Library.Models;
-using WeChatService.Library.Models;
 
 namespace WeChatService.Library.Services
 {
