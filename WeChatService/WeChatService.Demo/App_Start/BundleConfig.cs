@@ -36,7 +36,9 @@ namespace WeChatService.Demo
             //ScanQrCode
             bundles.Add(new ScriptBundle("~/bundles/ScanQrCode").Include(
                         "~/Scripts/JS/ScanQrCode.js"));
-           
+            //Initialize
+            bundles.Add(new ScriptBundle("~/bundles/initialize").Include(
+               "~/Scripts/JS/Initialize.js"));
         }
     }
 }

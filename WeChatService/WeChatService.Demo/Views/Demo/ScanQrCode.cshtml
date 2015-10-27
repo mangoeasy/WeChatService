@@ -4,8 +4,6 @@
 }
 @Scripts.Render("~/bundles/ScanQrCode")
 
-<div class="row">
-    <div class="text-center">
-        <a class="btn btn-primary" data-bind="click:viewModel.Scan" href="#">点击开启扫描</a>
-    </div>
-</div>
+
+<a class="btn btn-success col-xs-12" data-bind="click:viewModel.Scan" href="#">点击开启扫描</a>
+<p class="text-center" data-bind="text:viewModel.Result"></p>
