@@ -34,6 +34,7 @@ ScanQrCode.viewModel.Scan = function() {
                                 ko.mapping.fromJS(res.resultStr, {}, ScanQrCode.viewModel.Result);
                             }
                         });
+                        
                     });
 
                 }
