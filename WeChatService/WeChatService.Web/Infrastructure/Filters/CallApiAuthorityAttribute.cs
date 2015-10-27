@@ -56,13 +56,13 @@ namespace WeChatService.Web.Infrastructure.Filters
                 var objs = serializer.Deserialize<TokenModel>(jsonStr);
                 using (var accountService = DependencyResolver.Current.GetService<IAccountService>())
                 {
-                    var user = accountService.GetAccounts().FirstOrDefault(n => n.Id == objs.appid && n.IsDeleted == false);
+                    var user = accountService.GetAccounts().FirstOrDefault(n => n.AppId == objs.appid && n.IsDeleted == false);
                     if (user == null) return;
                     var startTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
                     var timestamp = (int)(DateTime.Now - startTime).TotalSeconds;
                     for (var i = 0; i < 600; i++)
                     {
-                        var signature = SHA1_Hash(string.Format("appsecret={0}&random={1}&timestamp={2}", user.AccountToken, objs.random, timestamp - i));
+                        var signature = SHA1_Hash(string.Format("appsecret={0}&random={1}&timestamp={2}", user.AppSecret, objs.random, timestamp - i));
                         if (objs.signature.ToUpper() == signature)
                         {
                             valid = true;

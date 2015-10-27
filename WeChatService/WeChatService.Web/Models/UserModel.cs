@@ -9,6 +9,5 @@ namespace WeChatService.Web.Models
     public class UserModel
     {
         public Guid Id { get; set; }
-        public CompanyModel CompanyModel { get; set; }
     }
 }

@@ -10,13 +10,15 @@ using WeChatService.Library.Models;
 using WeChatService.Library.Services;
 using WeChatService.Web.Help;
 using WeChatService.Web.Infrastructure;
+using WeChatService.Web.Infrastructure.Filters;
 using WeChatService.Web.Models.APIModel;
 
 namespace WeChatService.Web.Controllers.API
 {
+    [CallApiAuthority]
     public class JsApiConfigController : BaseApiController
     {
-         private readonly IAccountService _accountService;
+        private readonly IAccountService _accountService;
 
         public JsApiConfigController(IAccountService accountService)
         {
@@ -34,7 +36,7 @@ namespace WeChatService.Web.Controllers.API
                 var timestamp = (int)(DateTime.Now - startTime).TotalSeconds;
                 var nonceStr = Tools.CreateNonceStr();
                 var url = HttpContext.Current.Request["url"];
-             
+
                 var signature = Tools.SHA1_Hash(string.Format("jsapi_ticket={0}&noncestr={1}&timestamp={2}&url={3}", ticket, nonceStr, timestamp, url));
                 var model = new JsApiConfigModel
                 {
@@ -51,10 +53,10 @@ namespace WeChatService.Web.Controllers.API
         }
         private string GetTicket(Account account)
         {
-           
+
             var ticketUrl = string.Format("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={0}&type=jsapi", account.AccessToken);
             return JsonConvert.DeserializeObject<Ticket>(Tools.HttpGet(ticketUrl)).ticket;
         }
-        
+
     }
 }

@@ -38,13 +38,7 @@ namespace WeChatService.Web.Infrastructure
                 }
 
                 Mapper.Reset();
-                Mapper.CreateMap<Province, ProvinceModel>();
-                Mapper.CreateMap<City, CityModel>()
-                    .ForMember(n => n.ProvinceModel, opt => opt.MapFrom(src => src.Province));
-                Mapper.CreateMap<Company, CompanyModel>()
-                    .ForMember(n => n.CityModel, opt => opt.MapFrom(src => src.City));
-                Mapper.CreateMap<Account, UserModel>()
-                    .ForMember(n => n.CompanyModel, opt => opt.MapFrom(src => src.Company));
+                Mapper.CreateMap<Account, UserModel>();
                 return Mapper.Map<Account, UserModel>(user);
             }
             catch (Exception ex)

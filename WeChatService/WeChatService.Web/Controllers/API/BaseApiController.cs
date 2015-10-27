@@ -1,8 +1,10 @@
 ﻿using System.Web.Http;
+using System.Web.Http.Cors;
 using WeChatService.Web.Models;
 
 namespace WeChatService.Web.Controllers.API
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class BaseApiController : ApiController
     {
         protected ResponseModel Success()

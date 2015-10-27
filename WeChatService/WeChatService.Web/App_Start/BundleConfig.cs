@@ -39,9 +39,9 @@ namespace WeChatService.Web
             //ckeditor
             bundles.Add(new ScriptBundle("~/bundles/ckeditor").Include(
                "~/Scripts/ckeditor.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/admin").Include(
-                      "~/Scripts/JS/admin.js"));
+            //Initialize
+            bundles.Add(new ScriptBundle("~/bundles/initialize").Include(
+               "~/Scripts/JS/Initialize.js"));
         }
     }
 }
