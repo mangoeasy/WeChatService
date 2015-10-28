@@ -8,8 +8,10 @@
       <summary> 为 ASP.NET 应用程序提供全局 <see cref="T:System.Web.Http.HttpConfiguration" />。</summary>
     </member>
     <member name="P:System.Web.Http.GlobalConfiguration.Configuration"></member>
-    <member name="P:System.Web.Http.GlobalConfiguration.DefaultHandler">
-      <summary> 获取将为所有请求调用的默认消息处理程序。 </summary>
+    <member name="M:System.Web.Http.GlobalConfiguration.Configure(System.Action{System.Web.Http.HttpConfiguration})"></member>
+    <member name="P:System.Web.Http.GlobalConfiguration.DefaultHandler"></member>
+    <member name="P:System.Web.Http.GlobalConfiguration.DefaultServer">
+      <summary> 获取全局 <see cref="T:System.Web.Http.HttpServer" />。 </summary>
     </member>
     <member name="T:System.Web.Http.RouteCollectionExtensions">
       <summary>
@@ -50,47 +52,21 @@
       <param name="handler">请求将被调度到的处理程序。</param>
     </member>
     <member name="T:System.Web.Http.WebHost.HttpControllerHandler">
-      <summary> 一个 <see cref="T:System.Web.IHttpAsyncHandler" />，用于将 ASP.NET 请求传递给 <see cref="T:System.Web.Http.HttpServer" /> 管道并写回结果。</summary>
+      <summary>一个 <see cref="T:System.Web.IHttpTaskAsyncHandler" />，用于将 ASP.NET 请求传递给 <see cref="T:System.Web.Http.HttpServer" /> 管道并写回结果。</summary>
     </member>
     <member name="M:System.Web.Http.WebHost.HttpControllerHandler.#ctor(System.Web.Routing.RouteData)">
-      <summary> 初始化 <see cref="T:System.Web.Http.WebHost.HttpControllerHandler" /> 类的新实例。</summary>
+      <summary>初始化 <see cref="T:System.Web.Http.WebHost.HttpControllerHandler" /> 类的新实例。</summary>
       <param name="routeData">路由数据。</param>
     </member>
-    <member name="M:System.Web.Http.WebHost.HttpControllerHandler.BeginProcessRequest(System.Web.HttpContextBase,System.AsyncCallback,System.Object)">
-      <summary> 开始处理请求。</summary>
-      <returns>一个 <see cref="T:System.IAsyncResult" />，其中包含有关进程状态的信息。</returns>
-      <param name="httpContextBase">基 HTTP 上下文。</param>
-      <param name="callback">回调。</param>
-      <param name="state">状态。</param>
+    <member name="M:System.Web.Http.WebHost.HttpControllerHandler.#ctor(System.Web.Routing.RouteData,System.Net.Http.HttpMessageHandler)">
+      <summary>初始化 <see cref="T:System.Web.Http.WebHost.HttpControllerHandler" /> 类的新实例。</summary>
+      <param name="routeData">路由数据。</param>
+      <param name="handler">要将请求调度到的消息处理程序。</param>
     </member>
-    <member name="M:System.Web.Http.WebHost.HttpControllerHandler.EndProcessRequest(System.IAsyncResult)">
-      <summary> 在进程结束时，提供异步进程结束方法。</summary>
-      <param name="result">一个 <see cref="T:System.IAsyncResult" />，其中包含有关进程状态的信息。</param>
-    </member>
-    <member name="P:System.Web.Http.WebHost.HttpControllerHandler.IsReusable">
-      <summary> 获取一个值，该值指示其他请求能否使用 <see cref="T:System.Web.IHttpHandler" /> 实例。</summary>
-    </member>
-    <member name="M:System.Web.Http.WebHost.HttpControllerHandler.ProcessRequest(System.Web.HttpContextBase)">
-      <summary> 处理请求。</summary>
-      <param name="httpContextBase">基 HTTP 上下文。</param>
-    </member>
-    <member name="M:System.Web.Http.WebHost.HttpControllerHandler.System#Web#IHttpAsyncHandler#BeginProcessRequest(System.Web.HttpContext,System.AsyncCallback,System.Object)">
-      <summary> 开始处理请求。</summary>
-      <returns>一个 <see cref="T:System.IAsyncResult" />，其中包含有关进程状态的信息。</returns>
-      <param name="httpContext">HTTP 上下文。</param>
-      <param name="callback">回调。</param>
-      <param name="state">状态。</param>
-    </member>
-    <member name="M:System.Web.Http.WebHost.HttpControllerHandler.System#Web#IHttpAsyncHandler#EndProcessRequest(System.IAsyncResult)">
-      <summary> 在进程结束时，提供异步进程结束方法。</summary>
-      <param name="result">一个 <see cref="T:System.IAsyncResult" />，其中包含有关进程状态的信息。</param>
-    </member>
-    <member name="P:System.Web.Http.WebHost.HttpControllerHandler.System#Web#IHttpHandler#IsReusable">
-      <summary> 获取一个值，该值指示其他请求能否使用 <see cref="T:System.Web.IHttpHandler" /> 实例。</summary>
-    </member>
-    <member name="M:System.Web.Http.WebHost.HttpControllerHandler.System#Web#IHttpHandler#ProcessRequest(System.Web.HttpContext)">
-      <summary> 处理请求。</summary>
-      <param name="httpContext">基 HTTP 上下文。</param>
+    <member name="M:System.Web.Http.WebHost.HttpControllerHandler.ProcessRequestAsync(System.Web.HttpContext)">
+      <summary>提供处理异步任务的代码</summary>
+      <returns>异步任务。</returns>
+      <param name="context">HTTP 上下文。</param>
     </member>
     <member name="T:System.Web.Http.WebHost.HttpControllerRouteHandler">
       <summary> 一个 <see cref="T:System.Web.Routing.IRouteHandler" />，用于返回可将请求传递到给定 <see cref="T:System.Web.Http.HttpServer" /> 实例的 <see cref="T:System.Web.Http.WebHost.HttpControllerHandler" /> 的实例。</summary>
@@ -132,6 +108,29 @@
       <summary>使用 Web 主机的缓冲输出流。</summary>
       <returns>缓冲输出流。</returns>
       <param name="response">响应。</param>
+    </member>
+    <member name="T:System.Web.Http.WebHost.WebHostExceptionCatchBlocks">
+      <summary>提供在此程序集中使用的 catch 块。</summary>
+    </member>
+    <member name="P:System.Web.Http.WebHost.WebHostExceptionCatchBlocks.HttpControllerHandlerBufferContent">
+      <summary>获取 System.Web.Http.WebHost.HttpControllerHandler.WriteBufferedResponseContentAsync 中的 catch 块标签。</summary>
+      <returns>System.Web.Http.WebHost.HttpControllerHandler.WriteBufferedResponseContentAsync 中的 catch 块标签。</returns>
+    </member>
+    <member name="P:System.Web.Http.WebHost.WebHostExceptionCatchBlocks.HttpControllerHandlerBufferError">
+      <summary>获取 System.Web.Http.WebHost.HttpControllerHandler.WriteErrorResponseContentAsync 中的 catch 块标签。</summary>
+      <returns>System.Web.Http.WebHost.HttpControllerHandler.WriteErrorResponseContentAsync 中的 catch 块标签。</returns>
+    </member>
+    <member name="P:System.Web.Http.WebHost.WebHostExceptionCatchBlocks.HttpControllerHandlerComputeContentLength">
+      <summary>获取 System.Web.Http.WebHost.HttpControllerHandler.ComputeContentLength 中的 catch 块标签。</summary>
+      <returns>System.Web.Http.WebHost.HttpControllerHandler.ComputeContentLength 中的 catch 块标签。</returns>
+    </member>
+    <member name="P:System.Web.Http.WebHost.WebHostExceptionCatchBlocks.HttpControllerHandlerStreamContent">
+      <summary>获取 System.Web.Http.WebHost.HttpControllerHandler.WriteStreamedResponseContentAsync 中的 catch 块标签。</summary>
+      <returns>System.Web.Http.WebHost.HttpControllerHandler.WriteStreamedResponseContentAsync 中的 catch 块标签。</returns>
+    </member>
+    <member name="P:System.Web.Http.WebHost.WebHostExceptionCatchBlocks.HttpWebRoute">
+      <summary>获取 System.Web.Http.WebHost.WebHostExceptionCatchBlocks.HttpWebRoute.GetRouteData 中的 catch 块标签。</summary>
+      <returns>System.Web.Http.WebHost.WebHostExceptionCatchBlocks.HttpWebRoute.GetRouteData 中的 catch 块。</returns>
     </member>
   </members>
 </doc>
