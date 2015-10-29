@@ -33,12 +33,16 @@ namespace WeChatService.Demo
             bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
                 "~/Scripts/knockout-3.2.0.js",
                 "~/Scripts/knockout.mapping-latest.js"));
-            //ScanQrCode
-            bundles.Add(new ScriptBundle("~/bundles/ScanQrCode").Include(
-                        "~/Scripts/JS/ScanQrCode.js"));
             //Initialize
             bundles.Add(new ScriptBundle("~/bundles/initialize").Include(
                "~/Scripts/JS/Initialize.js"));
+
+            //ScanQrCode
+            bundles.Add(new ScriptBundle("~/bundles/ScanQrCode").Include(
+                        "~/Scripts/JS/ScanQrCode.js"));
+            //Photo
+            bundles.Add(new ScriptBundle("~/bundles/Photo").Include(
+                        "~/Scripts/JS/Photo.js"));
         }
     }
 }

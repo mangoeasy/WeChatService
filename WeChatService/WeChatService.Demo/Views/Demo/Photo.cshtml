@@ -1,12 +1,12 @@
 ﻿@{
-    ViewBag.Title = "微信二维码扫描 - Mangoeasy";
+    ViewBag.Title = "微信调用相机 - Mangoeasy";
     Layout = "~/Views/Shared/_EmptyLayout.cshtml";
 }
-@Scripts.Render("~/bundles/ScanQrCode")
+@Scripts.Render("~/bundles/Photo")
 
 <p class="text-center" data-bind="visible:!viewModel.PageReady">Loading...</p>
 <div data-bind="visible:viewModel.PageReady">
-    <a class="btn btn-success col-xs-12" data-bind="click:viewModel.Scan" href="#">点击扫描</a>
+    <a class="btn btn-success col-xs-12" data-bind="click:viewModel.Action" href="#">拍照或选择照片</a>
     <div class="text-center" style="padding-top: 30px; padding-bottom: 30px">
         <img src="/Content/Images/logo.png">
     </div>
@@ -18,12 +18,23 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">扫描结果</h4>
+                <h4 class="modal-title">照片</h4>
             </div>
-            <div class="modal-body">
-                <p class="text-center" style="word-break:break-all; word-wrap:break-word;" data-bind="text:viewModel.Result"></p>
+            <div class="modal-body text-center">
+                <div class="row" data-bind="foreach:viewModel.ImgUrls">
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <img data-bind="attr:{src:$data}" alt="" />
+                           
+                        </div>
+                        <div class="caption">
+                            <p class="text-center" style="word-break:break-all; word-wrap:break-word;" data-bind="text:'Id'+ $data"></p>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bind="click:viewModel.Upload">上传</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
             </div>
         </div><!-- /.modal-content -->

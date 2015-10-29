@@ -13,5 +13,10 @@ namespace WeChatService.Demo.Controllers
         {
             return View();
         }
+
+        public ActionResult Photo()
+        {
+            return View();
+        }
     }
 }

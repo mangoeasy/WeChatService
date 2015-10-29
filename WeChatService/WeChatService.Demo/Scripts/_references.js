@@ -10,3 +10,4 @@
 /// <reference path="knockout-3.2.0.js" />
 /// <reference path="jweixin-1.0.0.js" />
 /// <reference path="js/initialize.js" />
+/// <reference path="js/photo.js" />
