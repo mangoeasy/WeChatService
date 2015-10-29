@@ -1,54 +1,28 @@
-﻿var Photo = {
+﻿var NetworkType = {
     viewModel: {
-        PageReady: ko.observable(false),
-        ImgUrls: ko.observableArray(),
+        Result: ko.observable(),
+        PageReady: ko.observable(false)
     }
 };
-var i = 0;
-Photo.viewModel.Action = function () {
-    i = 0;
-    wx.chooseImage({
-        count: 2, // 默认9
-        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+NetworkType.viewModel.Action = function () {
+    wx.getNetworkType({
         success: function (res) {
-            //var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-            ko.mapping.fromJS(res.localIds, {}, Photo.viewModel.ImgUrls);
+            //var networkType = res.networkType; // 返回网络类型2g，3g，4g，wifi
+            ko.mapping.fromJS(res.networkType, {}, NetworkType.viewModel.Result);
             $('#resultmodal').modal({
                 show: true
             });
         }
     });
 };
-
-Photo.viewModel.Upload = function () {
-    var ids = ko.toJS(Photo.viewModel.ImgUrls);
-    var length = ids.length;
-    function upload() {
-        wx.uploadImage({
-            localId: ids[i],
-            success: function (res) {
-                i++;
-                alert(i + "张图片上传成功，服务器Id为：" + res.serverId);
-                if (i < length) {
-                    upload();
-                }
-            },
-            fail: function (res) {
-                alert(JSON.stringify(res));
-            }
-        });
-    }
-    upload();
-};
 $(function () {
-    ko.applyBindings(Photo);
+    ko.applyBindings(NetworkType);
     var model = {
         url: location.href,
-        jsApiList: 'chooseImage,uploadImage,onMenuShareTimeline,onMenuShareAppMessage,onMenuShareQQ,onMenuShareWeibo,onMenuShareQZone'
+        jsApiList: 'getNetworkType,onMenuShareTimeline,onMenuShareAppMessage,onMenuShareQQ,onMenuShareWeibo,onMenuShareQZone'
     };
     $.get('/api/Initialize', function (result) {
-        ko.mapping.fromJS(result, {}, Photo.viewModel.PageReady);
+        ko.mapping.fromJS(result, {}, NetworkType.viewModel.PageReady);
         $.get('/api/HeaderSetting/', function (base64) {
             $.ajax({
                 type: "get",
@@ -69,8 +43,8 @@ $(function () {
                         });
                         wx.ready(function () {
                             wx.onMenuShareTimeline({
-                                title: '微信调用相机-Mangoeasy', // 分享标题
-                                link: 'http://wechatservice.demo.mangoeasy.com/demo/photo', // 分享链接
+                                title: '微信获取网络类型-Mangoeasy', // 分享标题
+                                link: 'http://wechatservice.demo.mangoeasy.com/demo/networktype', // 分享链接
                                 imgUrl: 'http://wechatservice.demo.mangoeasy.com//Content/Images/logoSZ.png', // 分享图标
                                 success: function () {
 
@@ -80,9 +54,9 @@ $(function () {
                                 }
                             });
                             wx.onMenuShareAppMessage({
-                                title: '微信调用相机-Mangoeasy', // 分享标题
+                                title: '微信获取网络类型-Mangoeasy', // 分享标题
                                 desc: '请关注 Mangoeasy 获取更多资讯', // 分享描述
-                                link: 'http://wechatservice.demo.mangoeasy.com/demo/photo', // 分享链接
+                                link: 'http://wechatservice.demo.mangoeasy.com/demo/networktype', // 分享链接
                                 imgUrl: 'http://wechatservice.demo.mangoeasy.com//Content/Images/logoSZ.png', // 分享图标
                                 type: 'link', // 分享类型,music、video或link，不填默认为link
                                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
@@ -94,9 +68,9 @@ $(function () {
                                 }
                             });
                             wx.onMenuShareQQ({
-                                title: '微信调用相机-Mangoeasy', // 分享标题
+                                title: '微信获取网络类型-Mangoeasy', // 分享标题
                                 desc: '请关注 Mangoeasy 获取更多资讯', // 分享描述
-                                link: 'http://wechatservice.demo.mangoeasy.com/demo/photo', // 分享链接
+                                link: 'http://wechatservice.demo.mangoeasy.com/demo/networktype', // 分享链接
                                 imgUrl: 'http://wechatservice.demo.mangoeasy.com//Content/Images/logoSZ.png', // 分享图标
                                 success: function () {
                                     // 用户确认分享后执行的回调函数
@@ -106,9 +80,9 @@ $(function () {
                                 }
                             });
                             wx.onMenuShareWeibo({
-                                title: '微信调用相机-Mangoeasy', // 分享标题
+                                title: '微信获取网络类型-Mangoeasy', // 分享标题
                                 desc: '请关注 Mangoeasy 获取更多资讯', // 分享描述
-                                link: 'http://wechatservice.demo.mangoeasy.com/demo/photo', // 分享链接
+                                link: 'http://wechatservice.demo.mangoeasy.com/demo/networktype', // 分享链接
                                 imgUrl: 'http://wechatservice.demo.mangoeasy.com//Content/Images/logoSZ.png', // 分享图标
                                 success: function () {
                                     // 用户确认分享后执行的回调函数
@@ -118,9 +92,9 @@ $(function () {
                                 }
                             });
                             wx.onMenuShareQZone({
-                                title: '微信调用相机-Mangoeasy', // 分享标题
+                                title: '微信获取网络类型-Mangoeasy', // 分享标题
                                 desc: '请关注 Mangoeasy 获取更多资讯', // 分享描述
-                                link: 'http://wechatservice.demo.mangoeasy.com/demo/photo', // 分享链接
+                                link: 'http://wechatservice.demo.mangoeasy.com/demo/networktype', // 分享链接
                                 imgUrl: 'http://wechatservice.demo.mangoeasy.com//Content/Images/logoSZ.png', // 分享图标
                                 success: function () {
                                     // 用户确认分享后执行的回调函数
@@ -130,6 +104,7 @@ $(function () {
                                 }
                             });
                         });
+
                     }
                 }
             });

@@ -44,7 +44,7 @@ $(function () {
                         });
                         wx.ready(function () {
                             wx.onMenuShareTimeline({
-                                title: '微信二维码扫描 - Mangoeasy', // 分享标题
+                                title: '微信二维码扫描-Mangoeasy', // 分享标题
                                 link: 'http://wechatservice.demo.mangoeasy.com/demo/scanqrcodedemo', // 分享链接
                                 imgUrl: 'http://wechatservice.demo.mangoeasy.com//Content/Images/logoSZ.png', // 分享图标
                                 success: function () {
@@ -55,8 +55,8 @@ $(function () {
                                 }
                             });
                             wx.onMenuShareAppMessage({
-                                title: '微信二维码扫描 - Mangoeasy', // 分享标题
-                                desc: '公众号 - Mangoeasy', // 分享描述
+                                title: '微信二维码扫描-Mangoeasy', // 分享标题
+                                desc: '请关注 Mangoeasy 获取更多资讯', // 分享描述
                                 link: 'http://wechatservice.demo.mangoeasy.com/demo/scanqrcodedemo', // 分享链接
                                 imgUrl: 'http://wechatservice.demo.mangoeasy.com//Content/Images/logoSZ.png', // 分享图标
                                 type: 'link', // 分享类型,music、video或link，不填默认为link
@@ -69,8 +69,8 @@ $(function () {
                                 }
                             });
                             wx.onMenuShareQQ({
-                                title: '微信二维码扫描 - Mangoeasy', // 分享标题
-                                desc: '公众号 - Mangoeasy', // 分享描述
+                                title: '微信二维码扫描-Mangoeasy', // 分享标题
+                                desc: '请关注 Mangoeasy 获取更多资讯', // 分享描述
                                 link: 'http://wechatservice.demo.mangoeasy.com/demo/scanqrcodedemo', // 分享链接
                                 imgUrl: 'http://wechatservice.demo.mangoeasy.com//Content/Images/logoSZ.png', // 分享图标
                                 success: function () {
@@ -81,8 +81,8 @@ $(function () {
                                 }
                             });
                             wx.onMenuShareWeibo({
-                                title: '微信二维码扫描 - Mangoeasy', // 分享标题
-                                desc: '公众号 - Mangoeasy', // 分享描述
+                                title: '微信二维码扫描-Mangoeasy', // 分享标题
+                                desc: '请关注 Mangoeasy 获取更多资讯', // 分享描述
                                 link: 'http://wechatservice.demo.mangoeasy.com/demo/scanqrcodedemo', // 分享链接
                                 imgUrl: 'http://wechatservice.demo.mangoeasy.com//Content/Images/logoSZ.png', // 分享图标
                                 success: function () {
@@ -93,8 +93,8 @@ $(function () {
                                 }
                             });
                             wx.onMenuShareQZone({
-                                title: '微信二维码扫描 - Mangoeasy', // 分享标题
-                                desc: '公众号 - Mangoeasy', // 分享描述
+                                title: '微信二维码扫描-Mangoeasy', // 分享标题
+                                desc: '请关注 Mangoeasy 获取更多资讯', // 分享描述
                                 link: 'http://wechatservice.demo.mangoeasy.com/demo/scanqrcodedemo', // 分享链接
                                 imgUrl: 'http://wechatservice.demo.mangoeasy.com//Content/Images/logoSZ.png', // 分享图标
                                 success: function () {

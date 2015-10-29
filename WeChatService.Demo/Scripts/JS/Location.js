@@ -1,54 +1,39 @@
-﻿var Photo = {
+﻿var Location = {
     viewModel: {
-        PageReady: ko.observable(false),
-        ImgUrls: ko.observableArray(),
+        Result: ko.observable(),
+        PageReady: ko.observable(false)
     }
 };
-var i = 0;
-Photo.viewModel.Action = function () {
-    i = 0;
-    wx.chooseImage({
-        count: 2, // 默认9
-        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+Location.viewModel.Action = function () {
+    wx.getLocation({
+        type: 'gcj02', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
         success: function (res) {
-            //var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-            ko.mapping.fromJS(res.localIds, {}, Photo.viewModel.ImgUrls);
-            $('#resultmodal').modal({
-                show: true
-            });
+            //var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+            //var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+            //var speed = res.speed; // 速度，以米/每秒计
+            //var accuracy = res.accuracy; // 位置精度
+            wx.openLocation(
+                res
+                //{
+                //latitude: res.latitude, // 纬度，浮点数，范围为90 ~ -90
+                //longitude: res.longitude, // 经度，浮点数，范围为180 ~ -180。
+                //name: 'Location', // 位置名
+                //address: '', // 地址详情说明
+                //scale: 1, // 地图缩放级别,整形值,范围从1~28。默认为最大
+                //infoUrl: '' // 在查看位置界面底部显示的超链接,可点击跳转
+                //}
+            );
         }
     });
 };
-
-Photo.viewModel.Upload = function () {
-    var ids = ko.toJS(Photo.viewModel.ImgUrls);
-    var length = ids.length;
-    function upload() {
-        wx.uploadImage({
-            localId: ids[i],
-            success: function (res) {
-                i++;
-                alert(i + "张图片上传成功，服务器Id为：" + res.serverId);
-                if (i < length) {
-                    upload();
-                }
-            },
-            fail: function (res) {
-                alert(JSON.stringify(res));
-            }
-        });
-    }
-    upload();
-};
 $(function () {
-    ko.applyBindings(Photo);
+    ko.applyBindings(Location);
     var model = {
         url: location.href,
-        jsApiList: 'chooseImage,uploadImage,onMenuShareTimeline,onMenuShareAppMessage,onMenuShareQQ,onMenuShareWeibo,onMenuShareQZone'
+        jsApiList: 'getLocation,openLocation,onMenuShareTimeline,onMenuShareAppMessage,onMenuShareQQ,onMenuShareWeibo,onMenuShareQZone'
     };
     $.get('/api/Initialize', function (result) {
-        ko.mapping.fromJS(result, {}, Photo.viewModel.PageReady);
+        ko.mapping.fromJS(result, {}, Location.viewModel.PageReady);
         $.get('/api/HeaderSetting/', function (base64) {
             $.ajax({
                 type: "get",
@@ -69,8 +54,8 @@ $(function () {
                         });
                         wx.ready(function () {
                             wx.onMenuShareTimeline({
-                                title: '微信调用相机-Mangoeasy', // 分享标题
-                                link: 'http://wechatservice.demo.mangoeasy.com/demo/photo', // 分享链接
+                                title: '微信获取地理位置-Mangoeasy', // 分享标题
+                                link: 'http://wechatservice.demo.mangoeasy.com/demo/Location', // 分享链接
                                 imgUrl: 'http://wechatservice.demo.mangoeasy.com//Content/Images/logoSZ.png', // 分享图标
                                 success: function () {
 
@@ -80,9 +65,9 @@ $(function () {
                                 }
                             });
                             wx.onMenuShareAppMessage({
-                                title: '微信调用相机-Mangoeasy', // 分享标题
+                                title: '微信获取地理位置-Mangoeasy', // 分享标题
                                 desc: '请关注 Mangoeasy 获取更多资讯', // 分享描述
-                                link: 'http://wechatservice.demo.mangoeasy.com/demo/photo', // 分享链接
+                                link: 'http://wechatservice.demo.mangoeasy.com/demo/Location', // 分享链接
                                 imgUrl: 'http://wechatservice.demo.mangoeasy.com//Content/Images/logoSZ.png', // 分享图标
                                 type: 'link', // 分享类型,music、video或link，不填默认为link
                                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
@@ -94,9 +79,9 @@ $(function () {
                                 }
                             });
                             wx.onMenuShareQQ({
-                                title: '微信调用相机-Mangoeasy', // 分享标题
+                                title: '微信获取地理位置-Mangoeasy', // 分享标题
                                 desc: '请关注 Mangoeasy 获取更多资讯', // 分享描述
-                                link: 'http://wechatservice.demo.mangoeasy.com/demo/photo', // 分享链接
+                                link: 'http://wechatservice.demo.mangoeasy.com/demo/Location', // 分享链接
                                 imgUrl: 'http://wechatservice.demo.mangoeasy.com//Content/Images/logoSZ.png', // 分享图标
                                 success: function () {
                                     // 用户确认分享后执行的回调函数
@@ -106,9 +91,9 @@ $(function () {
                                 }
                             });
                             wx.onMenuShareWeibo({
-                                title: '微信调用相机-Mangoeasy', // 分享标题
+                                title: '微信获取地理位置-Mangoeasy', // 分享标题
                                 desc: '请关注 Mangoeasy 获取更多资讯', // 分享描述
-                                link: 'http://wechatservice.demo.mangoeasy.com/demo/photo', // 分享链接
+                                link: 'http://wechatservice.demo.mangoeasy.com/demo/Location', // 分享链接
                                 imgUrl: 'http://wechatservice.demo.mangoeasy.com//Content/Images/logoSZ.png', // 分享图标
                                 success: function () {
                                     // 用户确认分享后执行的回调函数
@@ -118,9 +103,9 @@ $(function () {
                                 }
                             });
                             wx.onMenuShareQZone({
-                                title: '微信调用相机-Mangoeasy', // 分享标题
+                                title: '微信获取地理位置-Mangoeasy', // 分享标题
                                 desc: '请关注 Mangoeasy 获取更多资讯', // 分享描述
-                                link: 'http://wechatservice.demo.mangoeasy.com/demo/photo', // 分享链接
+                                link: 'http://wechatservice.demo.mangoeasy.com/demo/Location', // 分享链接
                                 imgUrl: 'http://wechatservice.demo.mangoeasy.com//Content/Images/logoSZ.png', // 分享图标
                                 success: function () {
                                     // 用户确认分享后执行的回调函数
@@ -130,6 +115,7 @@ $(function () {
                                 }
                             });
                         });
+
                     }
                 }
             });

@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -190,8 +191,10 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\location.png" />
     <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Images\logoSZ.png" />
+    <Content Include="Content\Images\networktype.png" />
     <Content Include="Content\Images\photo.png" />
     <Content Include="Content\Images\scan.png" />
     <Content Include="favicon.ico" />
@@ -210,6 +213,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\JS\Initialize.js" />
+    <Content Include="Scripts\JS\Location.js" />
+    <Content Include="Scripts\JS\NetworkType.js" />
     <Content Include="Scripts\JS\Photo.js" />
     <Content Include="Scripts\JS\ScanQrCode.js" />
     <Content Include="Scripts\jweixin-1.0.0.js" />
@@ -257,6 +262,8 @@
     <Content Include="Views\Demo\ScanQrCodeDemo.cshtml" />
     <Content Include="Views\Shared\_EmptyLayout.cshtml" />
     <Content Include="Views\Demo\Photo.cshtml" />
+    <Content Include="Views\Demo\NetworkType.cshtml" />
+    <Content Include="Views\Demo\Location.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

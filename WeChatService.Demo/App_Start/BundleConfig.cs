@@ -43,6 +43,12 @@ namespace WeChatService.Demo
             //Photo
             bundles.Add(new ScriptBundle("~/bundles/Photo").Include(
                         "~/Scripts/JS/Photo.js"));
+            //NetworkType
+            bundles.Add(new ScriptBundle("~/bundles/NetworkType").Include(
+                        "~/Scripts/JS/NetworkType.js"));
+            //Location
+            bundles.Add(new ScriptBundle("~/bundles/Location").Include(
+                        "~/Scripts/JS/Location.js"));
         }
     }
 }

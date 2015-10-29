@@ -11,3 +11,5 @@
 /// <reference path="jweixin-1.0.0.js" />
 /// <reference path="js/initialize.js" />
 /// <reference path="js/photo.js" />
+/// <reference path="js/networktype.js" />
+/// <reference path="js/location.js" />

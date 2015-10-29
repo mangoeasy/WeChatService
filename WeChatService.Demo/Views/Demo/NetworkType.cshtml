@@ -1,12 +1,12 @@
 ﻿@{
-    ViewBag.Title = "微信二维码扫描-Mangoeasy";
+    ViewBag.Title = "微信获取网络类型";
     Layout = "~/Views/Shared/_EmptyLayout.cshtml";
 }
-@Scripts.Render("~/bundles/ScanQrCode")
 
+@Scripts.Render("~/bundles/NetworkType")
 <p class="text-center" data-bind="visible:!viewModel.PageReady">Loading...</p>
 <div data-bind="visible:viewModel.PageReady">
-    <a class="btn btn-success col-xs-12" data-bind="click:viewModel.Scan" href="#">点击扫描</a>
+    <a class="btn btn-success col-xs-12" data-bind="click:viewModel.Action" href="#">获取网络类型</a>
     <div class="text-center" style="padding-top: 30px; padding-bottom: 30px">
         <img src="/Content/Images/logo.png">
     </div>
@@ -18,12 +18,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">扫描结果</h4>
+                <h4 class="modal-title">网络类型</h4>
             </div>
             <div class="modal-body">
-                <p class="text-center" style="word-break:break-all; word-wrap:break-word;" data-bind="text:viewModel.Result"></p>
+                <p data-bind="text:viewModel.Result" class="text-center"></p>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer">               
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
             </div>
         </div><!-- /.modal-content -->

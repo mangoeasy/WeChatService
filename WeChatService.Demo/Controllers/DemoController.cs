@@ -18,5 +18,13 @@ namespace WeChatService.Demo.Controllers
         {
             return View();
         }
+        public ActionResult NetworkType()
+        {
+            return View();
+        }
+        public ActionResult Location()
+        {
+            return View();
+        }
     }
 }
