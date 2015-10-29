@@ -22,3 +22,18 @@ select,
 textarea {
     max-width: 280px;
 }
+.font-alt {
+    font-family: Dosis,arial,sans-serif;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 20px;
+    letter-spacing: 10px;
+}
+.hs-line-6 {
+    font-family: "Open Sans",arial,sans-serif;
+    font-weight: 300;
+    line-height: 1.2;
+    margin-top: 0;
+    opacity: 0.35;
+    position: relative;
+}

@@ -9,7 +9,7 @@ namespace WeChatService.Demo.Controllers
     public class DemoController : Controller
     {
         // GET: Demo
-        public ActionResult ScanQrCode()
+        public ActionResult ScanQrCodeDemo()
         {
             return View();
         }

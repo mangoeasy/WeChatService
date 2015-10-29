@@ -45,7 +45,7 @@ namespace WeChatService.Web.Controllers.API
                     Debug = true,
                     NonceStr = nonceStr,
                     Timestamp = timestamp.ToString(),
-                    JsApiList = jsApiList.Split(',')
+                    JsApiList = jsApiList != null ? jsApiList.Split(',') : new string[] { }
                 };
                 return model;
             }

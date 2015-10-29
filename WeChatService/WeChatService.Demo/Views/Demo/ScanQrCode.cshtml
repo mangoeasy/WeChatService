@@ -1,9 +1,0 @@
-﻿@{
-    ViewBag.Title = "ScanQRCode";
-    Layout = "~/Views/Shared/_EmptyLayout.cshtml";
-}
-@Scripts.Render("~/bundles/ScanQrCode")
-
-
-<a class="btn btn-success col-xs-12" data-bind="click:viewModel.Scan" href="#">点击开启扫描</a>
-<p class="text-center" data-bind="text:viewModel.Result"></p>
