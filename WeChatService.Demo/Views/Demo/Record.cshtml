@@ -1,12 +1,12 @@
 ﻿@{
-    ViewBag.Title = "微信二维码扫描-Mangoeasy";
+    ViewBag.Title = "微信录音-Mangoeasy";
     Layout = "~/Views/Shared/_EmptyLayout.cshtml";
 }
-@Scripts.Render("~/bundles/ScanQrCode")
-
+@Scripts.Render("~/bundles/Record")
 <p class="text-center" data-bind="visible:viewModel.PageReady()==false">Loading...</p>
 <div data-bind="visible:viewModel.PageReady">
-    <a class="btn btn-success col-xs-12" data-bind="click:viewModel.Scan" href="#">点击扫描</a>
+    <a class="btn btn-success col-xs-12" data-bind="click:viewModel.StartRecord,visible:viewModel.StartState()==false" href="#">开始录音</a>
+    <a class="btn btn-danger col-xs-12" data-bind="click:viewModel.StopRecord,visible:viewModel.StartState" href="#">停止录音</a>
     <div class="text-center" style="padding-top: 30px; padding-bottom: 30px">
         <img src="/Content/Images/logo.png">
     </div>
@@ -18,10 +18,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">扫描结果</h4>
+                <h4 class="modal-title">音频文件</h4>
             </div>
-            <div class="modal-body">
-                <p class="text-center" style="word-break:break-all; word-wrap:break-word;" data-bind="text:viewModel.Result"></p>
+            <div class="modal-body text-center">
+                <a class="btn btn-success" data-bind="visible:viewModel.PlayState()==false,click:viewModel.PlayVoice" href="#">播放录音</a>
+                <a class="btn btn-danger" data-bind="visible:viewModel.PlayState,click:viewModel.PauseVoice" href="#">暂停</a>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>

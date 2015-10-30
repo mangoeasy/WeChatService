@@ -49,6 +49,9 @@ namespace WeChatService.Demo
             //Location
             bundles.Add(new ScriptBundle("~/bundles/Location").Include(
                         "~/Scripts/JS/Location.js"));
+            //Record
+            bundles.Add(new ScriptBundle("~/bundles/Record").Include(
+                        "~/Scripts/JS/Record.js"));
         }
     }
 }

@@ -26,5 +26,9 @@ namespace WeChatService.Demo.Controllers
         {
             return View();
         }
+        public ActionResult Record()
+        {
+            return View();
+        }
     }
 }

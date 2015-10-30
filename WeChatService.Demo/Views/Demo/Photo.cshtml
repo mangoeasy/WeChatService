@@ -4,7 +4,7 @@
 }
 @Scripts.Render("~/bundles/Photo")
 
-<p class="text-center" data-bind="visible:!viewModel.PageReady">Loading...</p>
+<p class="text-center" data-bind="visible:viewModel.PageReady()==false">Loading...</p>
 <div data-bind="visible:viewModel.PageReady">
     <a class="btn btn-success col-xs-12" data-bind="click:viewModel.Action" href="#">拍照或选择照片</a>
     <div class="text-center" style="padding-top: 30px; padding-bottom: 30px">

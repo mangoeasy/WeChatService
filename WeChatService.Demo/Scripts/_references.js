@@ -13,3 +13,4 @@
 /// <reference path="js/photo.js" />
 /// <reference path="js/networktype.js" />
 /// <reference path="js/location.js" />
+/// <reference path="js/record.js" />
