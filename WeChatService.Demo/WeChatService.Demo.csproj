@@ -200,6 +200,7 @@
     <Content Include="Content\Images\photo.png" />
     <Content Include="Content\Images\record.png" />
     <Content Include="Content\Images\scan.png" />
+    <Content Include="Content\Images\translatevoice.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -227,6 +228,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\JS\TranslateVoice.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -269,6 +271,7 @@
     <Content Include="Views\Demo\NetworkType.cshtml" />
     <Content Include="Views\Demo\Location.cshtml" />
     <Content Include="Views\Demo\Record.cshtml" />
+    <Content Include="Views\Demo\TranslateVoice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

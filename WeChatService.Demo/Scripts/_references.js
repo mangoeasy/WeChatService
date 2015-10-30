@@ -14,3 +14,4 @@
 /// <reference path="js/networktype.js" />
 /// <reference path="js/location.js" />
 /// <reference path="js/record.js" />
+/// <reference path="js/translatevoice.js" />

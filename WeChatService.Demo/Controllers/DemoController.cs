@@ -30,5 +30,9 @@ namespace WeChatService.Demo.Controllers
         {
             return View();
         }
+        public ActionResult TranslateVoice()
+        {
+            return View();
+        }
     }
 }

@@ -52,6 +52,9 @@ namespace WeChatService.Demo
             //Record
             bundles.Add(new ScriptBundle("~/bundles/Record").Include(
                         "~/Scripts/JS/Record.js"));
+            //TranslateVoice
+            bundles.Add(new ScriptBundle("~/bundles/TranslateVoice").Include(
+                        "~/Scripts/JS/TranslateVoice.js"));
         }
     }
 }
